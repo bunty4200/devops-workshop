@@ -1,0 +1,35 @@
+---
+- name: This playbook for installation of jenkins
+  hosts: jenkins-master
+  become: true
+  tasks:
+  - name: Add jenkins key
+    apt_key:
+      url:  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+      state: present
+  
+  - name: Add ansible repo in jenkins-master
+    apt_repository:
+      repo:  'deb https://pkg.jenkins.io/debian-stable binary/'
+      state: present
+
+  - name: install java on jenkins
+    apt:
+      name: fontconfig openjdk-17-jre
+      state: present
+  
+  - name: install jenkins
+    apt:
+      name: jenkins
+      state: present
+    
+  - name: start jenkins service
+    service:
+      name: jenkins
+      present: started
+
+  - name: enable jenkins to start at boot time
+    service:
+      name: jenkins
+      enabled: yes
+  

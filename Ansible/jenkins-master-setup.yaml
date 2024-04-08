@@ -15,7 +15,7 @@
 
   - name: install java on jenkins
     apt:
-      name: fontconfig openjdk-17-jre
+      name: openjdk-17-jdk
       state: present
   
   - name: install jenkins

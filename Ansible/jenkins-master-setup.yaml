@@ -26,7 +26,7 @@
   - name: start jenkins service
     service:
       name: jenkins
-      present: started
+      state: started
 
   - name: enable jenkins to start at boot time
     service:
